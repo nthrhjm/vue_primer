@@ -20,15 +20,15 @@
         data: {
           //data はテンプレートから利用するデータをオブジェクトリテラル（key: value）で記述する。
           date: new Date(),
+          dayOfWeek: ["日", "月", "火", "水", "木", "金", "土"],
           price: 10000,
           message: "",
           count: 0,
         },
         methods: {
           parseDate(date) {
-            const dayOfWeek = ["日", "月", "火", "水", "木", "金", "土"];
-            return `${date.getFullYear()}年${date.getMonth()}月${date.getDate()}日 ${date.getHours()}:${date.getMinutes()} 
-                    (${dayOfWeek[date.getDay()]})`;
+            return `${date.getFullYear()}年${date.getMonth()}月${date.getDate()}日 ${date.getHours()}:${date.getMinutes()}
+                    (${this.dayOfWeek[date.getDay()]})`;
           },
           parsePrice() {
             return Number(this.price).toLocaleString() + "円";

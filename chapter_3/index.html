@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!--属性値のテンプレートへの展開-->
+      <!--v-bindは使用頻度が高いため省略記法としてv-bindを省略することができる-->
+      <!-- v-bind:href="book.url" ==> :href="book.url" -->
+      <p><a :href="book.url">{{book.title}}</a></p>
+      <p><span>{{book.author}}</span></p>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -4,17 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello, World!</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   </head>
   <body>
     <div id="app">
-      {{ message }}
+      <p>本日は{{ parseDate(date) }}です。</p>
+      <p>料金は{{ parsePrice() }}になります。</p>
+      <button class="button" @click="add">クリック</button>
+      <div>{{ message }}</div>
     </div>
     <script>
+      //new Vue()でインスタンス化する。別の場所から参照できるように変数に代入してもいいが不要ならインスタンス化のみでよい。
       new Vue({
-        el: "#app",
+        el: "#app", //el はVue.jsを適用するDOMツリーの基点を指定する。例ではid="app"が付くDOM要素（<div id="app">）にVue.jsが適用される。
         data: {
-          message: "Hello World!",
+          //data はテンプレートから利用するデータをオブジェクトリテラル（key: value）で記述する。
+          date: new Date(),
+          price: 10000,
+          message: "",
+          count: 0,
+        },
+        methods: {
+          parseDate(date) {
+            const dayOfWeek = ["日", "月", "火", "水", "木", "金", "土"];
+            return `${date.getFullYear()}年${date.getMonth()}月${date.getDate()}日 ${date.getHours()}:${date.getMinutes()} 
+                    (${dayOfWeek[date.getDay()]})`;
+          },
+          parsePrice() {
+            return Number(this.price).toLocaleString() + "円";
+          },
+          add() {
+            this.message = `ボタンを${++this.count}回クリックしました。`;
+          },
         },
       });
     </script>

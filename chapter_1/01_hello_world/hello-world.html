@@ -8,8 +8,16 @@
   </head>
   <body>
     <div id="app">
-      <p>本日は{{ parseDate(date) }}です。</p>
-      <p>料金は{{ parsePrice() }}になります。</p>
+      <div>
+        <h2>method</h2>
+        <p>本日は{{ parseDate(date) }}です。</p>
+        <p>料金は{{ parsePrice() }}になります。</p>
+      </div>
+      <div>
+        <h2>computed</h2>
+        <p>本日は{{ computedParseDate }}です。</p>
+        <p>料金は{{ computedParsePrice }}になります。</p>
+      </div>
       <button class="button" @click="add">クリック</button>
       <div>{{ message }}</div>
     </div>
@@ -35,6 +43,15 @@
           },
           add() {
             this.message = `ボタンを${++this.count}回クリックしました。`;
+          },
+        },
+        computed: {
+          computedParseDate() {
+            return `${this.date.getFullYear()}年${this.date.getMonth()}月${this.date.getDate()}日 ${this.date.getHours()}:${this.date.getMinutes()}
+                    (${this.dayOfWeek[this.date.getDay()]})`;
+          },
+          computedParsePrice() {
+            return Number(this.price).toLocaleString() + "円";
           },
         },
       });
